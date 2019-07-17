@@ -2,10 +2,10 @@ package com.tw.apistackbase;
 
 
 import com.tw.apistackbase.entity.Case;
+import com.tw.apistackbase.entity.CaseBrief;
 import com.tw.apistackbase.repository.CaseRepository;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -15,12 +15,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -34,7 +32,9 @@ public class CaseRepositoryTest {
     @Before
     public void setUp() throws Exception {
         testCases = IntStream.rangeClosed(1, 10).boxed()
-                .map(x -> new Case("New_Case_" + x, new Date().getTime()))
+                .map(x -> new Case("New_Case_" + x, new Date().getTime(),
+                        new CaseBrief( x + ": This is subjective brief." ,
+                                x + ": This is objective brief.")))
                 .collect(Collectors.toList());
     }
 
@@ -86,7 +86,7 @@ public class CaseRepositoryTest {
         // given
         caseRepository.saveAll(testCases);
         // when
-        caseRepository.deleteById(3L);
+        caseRepository.deleteById(testCases.get(0).getCaseID());
         // then
         List<Case> cases = caseRepository.findAll();
         assertEquals(9, cases.size());

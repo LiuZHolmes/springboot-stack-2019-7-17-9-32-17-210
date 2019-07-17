@@ -47,8 +47,17 @@ public class Case {
         this.caseHappenTime = caseHappenTime;
     }
 
-    public Case(String caseName, Long caseHappenTime) {
+    public CaseBrief getCaseBrief() {
+        return caseBrief;
+    }
+
+    public void setCaseBrief(CaseBrief caseBrief) {
+        this.caseBrief = caseBrief;
+    }
+
+    public Case(String caseName, Long caseHappenTime, CaseBrief caseBrief) {
         this.caseName = caseName;
         this.caseHappenTime = caseHappenTime;
+        this.caseBrief = caseBrief;
     }
 }
