@@ -79,4 +79,15 @@ public class CaseRepositoryTest {
         // then
         assertEquals(1, foundCases.size());
     }
+
+    @Test
+    public void should_delete_a_case_by_id_when_delete_it() {
+        // given
+        caseRepository.saveAll(testCases);
+        // when
+        caseRepository.deleteById(1L);
+        // then
+        List<Case> cases = caseRepository.findAll();
+        assertEquals(9, cases.size());
+    }
 }
