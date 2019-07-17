@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface CaseBriefRepository extends JpaRepository<CaseBrief,Long> {
+public interface CaseBriefRepository extends JpaRepository<CaseBrief, Long> {
 }

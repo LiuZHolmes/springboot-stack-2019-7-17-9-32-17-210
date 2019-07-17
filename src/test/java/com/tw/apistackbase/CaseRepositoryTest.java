@@ -34,10 +34,11 @@ public class CaseRepositoryTest {
     private List<Case> testCases;
 
     private List<CaseBrief> testCaseBriefs;
+
     @Before
     public void setUp() throws Exception {
-        testCaseBriefs = IntStream.rangeClosed(1,12).boxed()
-                .map(x -> new CaseBrief(x + ": This is subjective brief.",x + ": This is objective brief."))
+        testCaseBriefs = IntStream.rangeClosed(1, 12).boxed()
+                .map(x -> new CaseBrief(x + ": This is subjective brief.", x + ": This is objective brief."))
                 .collect(Collectors.toList());
         caseBriefRepository.saveAll(testCaseBriefs);
         testCases = IntStream.rangeClosed(1, 10).boxed()
@@ -75,7 +76,7 @@ public class CaseRepositoryTest {
         // when
         List<Case> foundCases = caseRepository.findAll(Sort.by("caseHappenTime"));
         // then
-        assertEquals(testCases.stream().sorted(Comparator.comparing(Case::getCaseHappenTime)).collect(Collectors.toList()),foundCases);
+        assertEquals(testCases.stream().sorted(Comparator.comparing(Case::getCaseHappenTime)).collect(Collectors.toList()), foundCases);
     }
 
 
@@ -105,7 +106,7 @@ public class CaseRepositoryTest {
         // given
         caseRepository.save(testCases.get(0));
         // when
-        caseRepository.updateCaseSetCaseBriefByCaseID(testCaseBriefs.get(11),testCases.get(0).getCaseID());
+        caseRepository.updateCaseSetCaseBriefByCaseID(testCaseBriefs.get(11), testCases.get(0).getCaseID());
         // then
         CaseBrief caseBrief = caseRepository.findById(testCases.get(0).getCaseID()).orElse(null).getCaseBrief();
         assertEquals("12: This is subjective brief.", caseBrief.getSubjectiveBrief());
