@@ -3,8 +3,9 @@ buildscript {
         springBootVersion = '2.0.3.RELEASE'
     }
     repositories {
-        mavenCentral()
-        maven { url "https://plugins.gradle.org/m2/" }
+        maven {url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        maven {url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
+        maven {url 'http://maven.aliyun.com/nexus/content/groups/public/'}
     }
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
@@ -23,13 +24,19 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
+    maven {url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    maven {url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
+    maven {url 'http://maven.aliyun.com/nexus/content/groups/public/'}
 }
 
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-actuator'
     compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'javax.xml.bind:jaxb-api:2.3.0'
+
+    runtime("com.h2database:h2")
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 
