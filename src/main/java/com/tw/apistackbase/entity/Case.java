@@ -1,9 +1,9 @@
 package com.tw.apistackbase.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+import javax.persistence.*;
 
 @Entity
 public class Case {
@@ -17,6 +17,10 @@ public class Case {
 
     @Column(nullable = false)
     private Long caseHappenTime;
+
+    @OneToOne
+    @Cascade(CascadeType.ALL)
+    private CaseBrief caseBrief;
 
     public Long getCaseID() {
         return caseID;
