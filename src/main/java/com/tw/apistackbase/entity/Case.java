@@ -1,8 +1,5 @@
 package com.tw.apistackbase.entity;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-
 import javax.persistence.*;
 
 @Entity
@@ -18,8 +15,8 @@ public class Case {
     @Column(nullable = false)
     private Long caseHappenTime;
 
-    @OneToOne
-    @Cascade(CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "caseBriefID",referencedColumnName = "caseBriefID")
     private CaseBrief caseBrief;
 
     public Long getCaseID() {

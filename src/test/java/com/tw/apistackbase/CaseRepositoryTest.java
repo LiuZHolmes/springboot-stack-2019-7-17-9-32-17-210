@@ -91,4 +91,18 @@ public class CaseRepositoryTest {
         List<Case> cases = caseRepository.findAll();
         assertEquals(9, cases.size());
     }
+
+    @Test
+    public void should_set_case_brief_by_case_id_when_update_it() {
+        // given
+        caseRepository.save(testCases.get(0));
+        // when
+        caseRepository.updateCaseSetCaseBriefByCaseID(testCases.get(0).getCaseID(),
+                new CaseBrief("This is updated subjective brief.",
+                        "This is updated objective brief."));
+        // then
+        List<Case> cases = caseRepository.findAll();
+        assertEquals(1, cases.size());
+        assertEquals("This is updated subjective brief.", cases.get(0).getCaseBrief().getSubjectiveBrief());
+    }
 }

@@ -1,15 +1,12 @@
 package com.tw.apistackbase.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class CaseBrief {
     @Id
     @GeneratedValue
-    private Long id;
+    private Long caseBriefID;
 
     @Column(nullable = false)
     private String subjectiveBrief;
@@ -17,18 +14,15 @@ public class CaseBrief {
     @Column(nullable = false)
     private String objectiveBrief;
 
+    @OneToOne(mappedBy = "caseBrief")
+    private Case aCase;
+
     public CaseBrief(String subjectiveBrief, String objectiveBrief) {
         this.subjectiveBrief = subjectiveBrief;
         this.objectiveBrief = objectiveBrief;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getSubjectiveBrief() {
         return subjectiveBrief;
@@ -44,5 +38,13 @@ public class CaseBrief {
 
     public void setObjectiveBrief(String objectiveBrief) {
         this.objectiveBrief = objectiveBrief;
+    }
+
+    public Long getCaseBriefID() {
+        return caseBriefID;
+    }
+
+    public void setCaseBriefID(Long caseBriefID) {
+        this.caseBriefID = caseBriefID;
     }
 }
