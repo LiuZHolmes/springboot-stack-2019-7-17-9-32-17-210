@@ -16,7 +16,7 @@ public class Case {
     private String caseName;
 
     @Column(nullable = false)
-    private Long time;
+    private Long caseHappenTime;
 
     public Long getCaseID() {
         return caseID;
@@ -34,18 +34,17 @@ public class Case {
         this.caseName = caseName;
     }
 
-    public Long getTime() {
-        return time;
+
+    public Long getCaseHappenTime() {
+        return caseHappenTime;
     }
 
-    public void setTime(Long time) {
-        this.time = time;
+    public void setCaseHappenTime(Long caseHappenTime) {
+        this.caseHappenTime = caseHappenTime;
     }
 
-    public Case(String caseName, Long time) {
+    public Case(String caseName, Long caseHappenTime) {
         this.caseName = caseName;
-        this.time = time;
+        this.caseHappenTime = caseHappenTime;
     }
-
-
 }
