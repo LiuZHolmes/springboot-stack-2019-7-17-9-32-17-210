@@ -3,6 +3,7 @@ package com.tw.apistackbase;
 
 import com.tw.apistackbase.entity.Case;
 import com.tw.apistackbase.entity.CaseBrief;
+import com.tw.apistackbase.repository.CaseBriefRepository;
 import com.tw.apistackbase.repository.CaseRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,14 +28,21 @@ public class CaseRepositoryTest {
     @Autowired
     CaseRepository caseRepository;
 
+    @Autowired
+    CaseBriefRepository caseBriefRepository;
+
     private List<Case> testCases;
 
+    private List<CaseBrief> testCaseBriefs;
     @Before
     public void setUp() throws Exception {
+        testCaseBriefs = IntStream.rangeClosed(1,12).boxed()
+                .map(x -> new CaseBrief(x + ": This is subjective brief.",x + ": This is objective brief."))
+                .collect(Collectors.toList());
+        caseBriefRepository.saveAll(testCaseBriefs);
         testCases = IntStream.rangeClosed(1, 10).boxed()
                 .map(x -> new Case("New_Case_" + x, new Date().getTime(),
-                        new CaseBrief( x + ": This is subjective brief." ,
-                                x + ": This is objective brief.")))
+                        testCaseBriefs.get(x - 1)))
                 .collect(Collectors.toList());
     }
 
@@ -97,12 +105,9 @@ public class CaseRepositoryTest {
         // given
         caseRepository.save(testCases.get(0));
         // when
-        caseRepository.updateCaseSetCaseBriefByCaseID(testCases.get(0).getCaseID(),
-                new CaseBrief("This is updated subjective brief.",
-                        "This is updated objective brief."));
+        caseRepository.updateCaseSetCaseBriefByCaseID(testCaseBriefs.get(11),testCases.get(0).getCaseID());
         // then
-        List<Case> cases = caseRepository.findAll();
-        assertEquals(1, cases.size());
-        assertEquals("This is updated subjective brief.", cases.get(0).getCaseBrief().getSubjectiveBrief());
+        CaseBrief caseBrief = caseRepository.findById(testCases.get(0).getCaseID()).orElse(null).getCaseBrief();
+        assertEquals("12: This is subjective brief.", caseBrief.getSubjectiveBrief());
     }
 }

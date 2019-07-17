@@ -34,7 +34,6 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-actuator'
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-    compile 'javax.xml.bind:jaxb-api:2.3.0'
 
     runtime("com.h2database:h2")
 

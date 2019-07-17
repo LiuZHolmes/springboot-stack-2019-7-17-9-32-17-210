@@ -3,6 +3,7 @@ package com.tw.apistackbase.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Case")
 public class Case {
 
     @Id
@@ -16,7 +17,6 @@ public class Case {
     private Long caseHappenTime;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "caseBriefID",referencedColumnName = "caseBriefID")
     private CaseBrief caseBrief;
 
 //    @OneToOne(cascade = CascadeType.ALL)

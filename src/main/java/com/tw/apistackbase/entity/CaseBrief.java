@@ -3,6 +3,7 @@ package com.tw.apistackbase.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "case_brief")
 public class CaseBrief {
     @Id
     @GeneratedValue
