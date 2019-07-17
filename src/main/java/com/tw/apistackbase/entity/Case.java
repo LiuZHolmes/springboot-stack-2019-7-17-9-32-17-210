@@ -19,9 +19,9 @@ public class Case {
     @JoinColumn(name = "caseBriefID",referencedColumnName = "caseBriefID")
     private CaseBrief caseBrief;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @Column(nullable = false)
-    private Procuratorate Prosecution;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @Column(nullable = false)
+//    private Procuratorate Prosecution;
 
     public Long getCaseID() {
         return caseID;
