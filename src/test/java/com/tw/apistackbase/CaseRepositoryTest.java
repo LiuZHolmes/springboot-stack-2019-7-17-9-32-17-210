@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Comparator;
@@ -59,15 +60,15 @@ public class CaseRepositoryTest {
         assertEquals("New_Case_1", foundCase.getCaseName());
     }
 
-//    @Test
-//    public void should_return_cases_order_by_time_asc_when_request_them() {
-//        // given
-//        caseRepository.saveAll(testCases);
-//        // when
-//        List<Case> foundCases = caseRepository.findAllOrderByTime();
-//        // then
-//        assertEquals(testCases.stream().sorted(Comparator.comparing(Case::getTime)).collect(Collectors.toList()),foundCases);
-//    }
+    @Test
+    public void should_return_cases_order_by_time_asc_when_request_them() {
+        // given
+        caseRepository.saveAll(testCases);
+        // when
+        List<Case> foundCases = caseRepository.findAll(Sort.by("caseHappenTime"));
+        // then
+        assertEquals(testCases.stream().sorted(Comparator.comparing(Case::getCaseHappenTime)).collect(Collectors.toList()),foundCases);
+    }
 
 
     @Test
@@ -85,7 +86,7 @@ public class CaseRepositoryTest {
         // given
         caseRepository.saveAll(testCases);
         // when
-        caseRepository.deleteById(1L);
+        caseRepository.deleteById(3L);
         // then
         List<Case> cases = caseRepository.findAll();
         assertEquals(9, cases.size());
