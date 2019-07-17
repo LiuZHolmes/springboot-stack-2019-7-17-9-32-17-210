@@ -61,4 +61,7 @@ public class Case {
         this.caseHappenTime = caseHappenTime;
         this.caseBrief = caseBrief;
     }
+
+    public Case() {
+    }
 }

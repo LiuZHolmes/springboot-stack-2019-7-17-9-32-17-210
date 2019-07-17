@@ -23,7 +23,8 @@ public class CaseBrief {
         this.objectiveBrief = objectiveBrief;
     }
 
-
+    public CaseBrief() {
+    }
 
     public String getSubjectiveBrief() {
         return subjectiveBrief;

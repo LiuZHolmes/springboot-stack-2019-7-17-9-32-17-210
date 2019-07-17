@@ -16,8 +16,8 @@ public interface CaseRepository extends JpaRepository<Case,Long> {
     // List<Case> findAllOrderByCaseHappenTime();
     List<Case> findAllByCaseName(String caseName);
 
-    // @Transactional
-    @Modifying
+    @Transactional
+    @Modifying(clearAutomatically = true)
     @Query("update Case c Set c.caseBrief = ?1 Where c.caseID = ?2")
     int updateCaseSetCaseBriefByCaseID(CaseBrief caseBrief,Long caseID);
 }
