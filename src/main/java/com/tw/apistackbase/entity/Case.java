@@ -20,11 +20,12 @@ public class Case {
     private Long caseHappenTime;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "caseBrief")
     private CaseBrief caseBrief;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @Column(nullable = false)
-//    private Procuratorate Prosecution;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(nullable = true)
+    private Procuratorate Prosecution;
 
     public Long getCaseID() {
         return caseID;
@@ -66,5 +67,13 @@ public class Case {
     }
 
     public Case() {
+    }
+
+    public Procuratorate getProsecution() {
+        return Prosecution;
+    }
+
+    public void setProsecution(Procuratorate prosecution) {
+        Prosecution = prosecution;
     }
 }

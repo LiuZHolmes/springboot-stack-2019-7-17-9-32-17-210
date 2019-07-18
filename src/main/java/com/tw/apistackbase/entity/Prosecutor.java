@@ -14,4 +14,11 @@ public class Prosecutor {
 
     @Column(nullable = false)
     private String prosecutorName;
+
+    public Prosecutor() {
+    }
+
+    public Prosecutor(String prosecutorName) {
+        this.prosecutorName = prosecutorName;
+    }
 }

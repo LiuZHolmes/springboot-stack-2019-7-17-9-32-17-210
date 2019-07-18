@@ -37,7 +37,7 @@ public class CaseBriefRepositoryTest {
         // given
         caseBriefRepository.save(testCaseBriefs.get(0));
         // when
-        CaseBrief foundCaseBrief = caseBriefRepository.findById(1L).orElse(null);
+        CaseBrief foundCaseBrief = caseBriefRepository.findById(testCaseBriefs.get(0).getCaseBriefID()).orElse(null);
         // then
         assertEquals("This is subjective brief.", foundCaseBrief.getSubjectiveBrief());
     }

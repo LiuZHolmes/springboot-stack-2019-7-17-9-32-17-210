@@ -16,5 +16,17 @@ public class Procuratorate {
     private String ProcuratorateName;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "procuratorateID")
     private List<Prosecutor> prosecutors;
+
+    @OneToOne(mappedBy = "Prosecution")
+    private Case aCase;
+
+    public Procuratorate() {
+    }
+
+    public Procuratorate(String procuratorateName, List<Prosecutor> prosecutors) {
+        ProcuratorateName = procuratorateName;
+        this.prosecutors = prosecutors;
+    }
 }
