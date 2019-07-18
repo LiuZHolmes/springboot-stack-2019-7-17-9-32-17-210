@@ -15,6 +15,11 @@ public class Prosecutor {
     @Column(nullable = false)
     private String prosecutorName;
 
+    private int age;
+    private String gender;
+    private String IDNumber;
+    private int experience;
+
     public Prosecutor() {
     }
 
