@@ -1,6 +1,9 @@
 package com.tw.apistackbase.entity;
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Case")

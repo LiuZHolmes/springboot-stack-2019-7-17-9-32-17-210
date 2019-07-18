@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -60,11 +61,23 @@ public class CaseRepositoryTest {
     }
 
     @Test
+    public void should_throw_an_exception_when_save_with_null_field() {
+        // given
+        Case aCase = new Case();
+        // then
+        assertThrows(Exception.class,()->{
+            // when
+            caseRepository.save(aCase);
+            caseRepository.flush();
+        });
+    }
+
+    @Test
     public void should_return_a_case_when_find_case_by_id() {
         // given
         caseRepository.save(testCases.get(0));
         // when
-        Case foundCase = caseRepository.findById(1L).orElse(null);
+        Case foundCase = caseRepository.findById(testCases.get(0).getCaseID()).orElse(null);
         // then
         assertEquals("New_Case_1", foundCase.getCaseName());
     }
